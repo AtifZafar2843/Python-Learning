@@ -1,6 +1,6 @@
 # 01. Python Basics
 
-Welcome to my first steps in Python! This folder contains my initial hands-on practice with writing Python code, understanding how Python runs instructions, and solving basic logic challenges.
+Welcome to my first steps in Python! I am starting this python leaning journey on 7th November 2026, I am writing this date for being consistent and to track my progress. This folder contains my initial hands-on practice with writing Python code, understanding how Python runs instructions, and solving basic logic challenges.
 
 ---
 
