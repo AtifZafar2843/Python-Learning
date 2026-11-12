@@ -1,6 +1,6 @@
 # 06. Loops
 
-This folder covers repetition and automation in Python: using `for` loops for known sequences, `while` loops for condition-driven iterations, loop control statements, and multi-level nested loops.
+This folder covers repetition and automation in Python: using `for` loops for known sequences, `while` loops for condition-driven iterations, loop control statements, multi-level nested loops, and pattern printing.
 
 ---
 
@@ -120,5 +120,123 @@ This folder covers repetition and automation in Python: using `for` loops for kn
     - Leading spaces: `n - i` spaces per row.
     - Stars per row: `2 * i - 1` (generates odd sequence: 1, 3, 5, 7...).
   - Used `range(n - 1, 0, -1)` with a negative step of `-1` to cleanly mirror the bottom pyramid without duplicating the middle row.
-  - Mastered `print(..., end="")` to draw shapes column by column before committing to a newline.
 
+---
+
+## 🌟 Star Patterns Practice (`pattern1.py` – `pattern5.py`)
+
+A hands-on deep dive into row-column coordination, managing spaces, and manipulating inner vs. outer loop boundaries.
+
+---
+
+### 🔸 Pattern 1: Solid Square Grid (`pattern1.py`)
+- **Concept:** Outer loop controls row count ($n$), inner loop prints stars equal to column count ($n$).
+- **Code:**
+  ```python
+  n = int(input("enter a number:"))
+  for rows in range(1, n + 1):
+      for space in range(1, n + 1):
+          print("*", end="")
+      print()
+  ```
+- **Output (`n = 5`):**
+  ```text
+  *****
+  *****
+  *****
+  *****
+  *****
+  ```
+- **Key Takeaway:** Both loops run independently $n$ times, creating a fixed $n \times n$ matrix of stars.
+
+---
+
+### 🔸 Pattern 2: Left-Aligned Increasing Triangle (`pattern2.py`)
+- **Concept:** Inner loop range is tied directly to the current row number (`range(1, rows + 1)`).
+- **Code:**
+  ```python
+  n = int(input("enter a number:"))
+  for rows in range(1, n + 1):
+      for space in range(1, rows + 1):
+          print("*", end="")
+      print()
+  ```
+- **Output (`n = 5`):**
+  ```text
+  *
+  **
+  ***
+  ****
+  *****
+  ```
+- **Key Takeaway:** As `rows` increments from 1 to $n$, the inner loop executes 1 time, then 2 times, up to $n$ times.
+
+---
+
+### 🔸 Pattern 3: Inverted / Decreasing Triangle (`pattern3.py`)
+- **Concept:** Inner loop starts from the current row value and runs up to $n + 1$ (`range(rows, n + 1)`).
+- **Code:**
+  ```python
+  n = int(input("enter a number:"))
+  for rows in range(1, n + 1):
+      for space in range(rows, n + 1):
+          print("*", end="")
+      print()
+  ```
+- **Output (`n = 5`):**
+  ```text
+  *****
+  ****
+  ***
+  **
+  *
+  ```
+- **Key Takeaway:** On row 1, it prints from 1 to $n$ ($n$ stars); on row 2, from 2 to $n$ ($n - 1$ stars), gradually shrinking down to 1 star on row $n$.
+
+---
+
+### 🔸 Pattern 4: Right-Aligned Triangle with Spaces (`pattern4.py`)
+- **Concept:** Two separate inner loops inside one outer loop: first prints decreasing spaces (`range(rows, n)`), second prints increasing stars (`range(1, rows + 1)`).
+- **Code:**
+  ```python
+  n = int(input("enter a number:"))
+  for rows in range(1, n + 1):
+      for space in range(rows, n):
+          print(" ", end="")
+      for star in range(1, rows + 1):
+          print("*", end="")
+      print()
+  ```
+- **Output (`n = 5`):**
+  ```text
+      *
+     **
+    ***
+   ****
+  *****
+  ```
+- **Key Takeaway:** Spaces shift the stars to the right edge. On row 1, there are 4 spaces and 1 star; on row 5, there are 0 spaces and 5 stars.
+
+---
+
+### 🔸 Pattern 5: Centered Full Pyramid (`pattern5.py`)
+- **Concept:** Combines leading spaces (`range(rows, n)`) with odd numbers of stars per row (`range(1, rows * 2)` $\rightarrow 2 \times \text{rows} - 1$ stars).
+- **Code:**
+  ```python
+  n = int(input("enter a number:"))
+  for rows in range(1, n + 1):
+      for space in range(rows, n):
+          print(" ", end="")
+      for star in range(1, rows * 2):
+          print("*", end="")
+      print()
+  ```
+- **Output (`n = 5`):**
+  ```text
+      *
+     ***
+    *****
+   *******
+  *********
+  ```
+- **Key Takeaway:** Generates the odd sequence ($1, 3, 5, 7, 9...$) of stars centered with decreasing leading spaces, producing a symmetrical pyramid.
